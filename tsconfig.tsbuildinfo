@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/capturesheet.tsx","./src/components/mapview.tsx","./src/components/postcard.tsx","./src/lib/geo.ts","./src/lib/idb.ts","./src/lib/speech.ts","./src/lib/store.ts","./src/lib/supabase.ts","./src/lib/trip.ts","./src/lib/types.ts","./vite.config.ts"],"version":"5.9.3"}
