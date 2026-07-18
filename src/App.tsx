@@ -101,6 +101,7 @@ export default function App() {
         <div className="meta">
           {me} · {legOf(day + 'T12:00:00')}{pending > 0 ? ` · ${pending} ממתינים` : ''}
         </div>
+        <button className="back-btn" onClick={() => { localStorage.removeItem('moment.me'); setMe(null) }}>החלפת משתמש</button>
       </header>
 
       <nav className="days">
@@ -136,7 +137,6 @@ export default function App() {
             <div className="card-actions" style={{ margin: '0 18px 24px' }}>
               <button className="mini" onClick={share}>שיתוף היום</button>
               <button className="mini" onClick={exportJson}>ייצוא לקובץ</button>
-              <button className="mini" onClick={() => { localStorage.removeItem('moment.me'); setMe(null) }}>החלפת משתמש</button>
             </div>
           </>
         )

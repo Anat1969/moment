@@ -24,15 +24,20 @@ export default function Postcard({ c, readOnly, onEdit, onDelete }: Props) {
 
   const save = () => { onEdit?.(c.id, draft); setEditing(false) }
 
+  const title = c.transcript || c.note || ''
+
   return (
     <article className="postcard">
       {img && <img className="postcard__img" src={img} alt="" loading="lazy" />}
       {c._pending && <div className="pending">ממתין לרשת</div>}
 
-      <div className="stamp-bar">
-        <span>{legOf(c.taken_at)}</span>
-        <b>{hhmm(c.taken_at)}</b>
-        <span>{tripDay(c.taken_at)}</span>
+      <div className="caption">
+        {title && <h3 className="caption__title">{title}</h3>}
+        <div className="caption__meta">
+          {c.place_name && <span className="caption__place">{c.place_name}</span>}
+          <span className="caption__time">{hhmm(c.taken_at)} · {tripDay(c.taken_at)}</span>
+          <span className="caption__author">{c.author}</span>
+        </div>
       </div>
 
       <div className="postcard__body">
@@ -44,15 +49,11 @@ export default function Postcard({ c, readOnly, onEdit, onDelete }: Props) {
               <button className="mini" onClick={() => setEditing(false)}>ביטול</button>
             </div>
           </>
-        ) : (
-          <p className="transcript">{c.transcript || c.note}</p>
-        )}
+        ) : null}
 
         {audio && <audio controls src={audio} preload="none" />}
 
         <div className="place">
-          <span className="author">{c.author}</span>
-          {c.place_name && <span>{c.place_name}</span>}
           {c.lat != null && c.lng != null && (
             <a
               className="en"
