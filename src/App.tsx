@@ -97,11 +97,11 @@ export default function App() {
       {!configured && <div className="offline-flag">חסרים פרטי Supabase בקובץ ‎.env‎</div>}
 
       <header className="top">
+        <button className="home-btn" onClick={() => { localStorage.removeItem('moment.me'); setMe(null) }} aria-label="חזרה לדף הראשי">←</button>
         <h1>רגע</h1>
         <div className="meta">
           {me} · {legOf(day + 'T12:00:00')}{pending > 0 ? ` · ${pending} ממתינים` : ''}
         </div>
-        <button className="back-btn" onClick={() => { localStorage.removeItem('moment.me'); setMe(null) }}>החלפת משתמש</button>
       </header>
 
       <nav className="days">
