@@ -1,3 +1,4 @@
+export const PRE_TRIP = '2026-07-18'
 export const TRIP_START = '2026-07-23'
 export const TRIP_END = '2026-08-19'
 
@@ -13,21 +14,28 @@ export function dayKey(d: Date | string): string {
   return `${dt.getFullYear()}-${p(dt.getMonth() + 1)}-${p(dt.getDate())}`
 }
 
-export function tripDay(dateISO: string): number {
+export function tripDayNum(dateISO: string): number {
   const a = new Date(TRIP_START + 'T00:00:00')
   const b = new Date(dayKey(dateISO) + 'T00:00:00')
   return Math.floor((b.getTime() - a.getTime()) / 86400000) + 1
 }
 
+export function tripDay(dateISO: string): string {
+  const n = tripDayNum(dateISO)
+  if (n <= 0) return hebDate(dayKey(dateISO))
+  return `יום ${n}`
+}
+
 export function legOf(dateISO: string): string {
   const k = dayKey(dateISO)
+  if (k < TRIP_START) return 'לפני הטיול'
   const leg = LEGS.find(l => k >= l.from && k < l.to)
   return leg ? leg.label : 'הטיול'
 }
 
 export function allTripDays(): string[] {
   const out: string[] = []
-  const a = new Date(TRIP_START + 'T00:00:00')
+  const a = new Date(PRE_TRIP + 'T00:00:00')
   const b = new Date(TRIP_END + 'T00:00:00')
   for (let d = new Date(a); d <= b; d.setDate(d.getDate() + 1)) out.push(dayKey(d))
   return out

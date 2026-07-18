@@ -45,7 +45,7 @@ export default function MapView({ items }: { items: Capture[] }) {
         `<div style="direction:rtl;font-family:Heebo,sans-serif;max-width:200px">
           ${img ? `<img src="${img}" style="width:100%;border-radius:2px;margin-bottom:6px" />` : ''}
           <div style="font-size:13px;line-height:1.5">${(i.transcript || i.note || '').slice(0, 140)}</div>
-          <div style="font-size:11px;color:#8A9299;margin-top:5px">יום ${tripDay(i.taken_at)} · ${hhmm(i.taken_at)} · ${i.author}</div>
+          <div style="font-size:11px;color:#8A9299;margin-top:5px">${tripDay(i.taken_at)} · ${hhmm(i.taken_at)} · ${i.author}</div>
         </div>`
       )
       m.addTo(layer.current!)

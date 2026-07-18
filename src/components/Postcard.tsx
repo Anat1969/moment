@@ -27,12 +27,13 @@ export default function Postcard({ c, readOnly, onEdit, onDelete }: Props) {
   return (
     <article className="postcard">
       {img && <img className="postcard__img" src={img} alt="" loading="lazy" />}
-      <div className="stamp">
-        {legOf(c.taken_at)}
-        <b>{hhmm(c.taken_at)}</b>
-        <span>יום {tripDay(c.taken_at)}</span>
-      </div>
       {c._pending && <div className="pending">ממתין לרשת</div>}
+
+      <div className="stamp-bar">
+        <span>{legOf(c.taken_at)}</span>
+        <b>{hhmm(c.taken_at)}</b>
+        <span>{tripDay(c.taken_at)}</span>
+      </div>
 
       <div className="postcard__body">
         {editing ? (

@@ -47,7 +47,7 @@ export default function App() {
       <div className="app">
         <div className="share-head">
           <div className="kicker">יומן הטיול · {legOf(shareDay + 'T12:00:00')}</div>
-          <h1>יום {tripDay(shareDay + 'T12:00:00')} — {hebDate(shareDay)}</h1>
+          <h1>{tripDay(shareDay + 'T12:00:00')} — {hebDate(shareDay)}</h1>
         </div>
         {items.length === 0
           ? <div className="empty"><h2>אין עדיין רגעים ביום הזה</h2></div>
@@ -86,7 +86,7 @@ export default function App() {
 
   const share = async () => {
     const url = `${location.origin}/#/share/${day}`
-    const title = `יום ${tripDay(day + 'T12:00:00')} — ${hebDate(day)}`
+    const title = `${tripDay(day + 'T12:00:00')} — ${hebDate(day)}`
     if (navigator.share) { try { await navigator.share({ title, url }) } catch {} }
     else { await navigator.clipboard.writeText(url); alert('הקישור הועתק') }
   }
@@ -112,7 +112,7 @@ export default function App() {
             data-has={byDay.has(d) ? '1' : '0'}
             onClick={() => setDay(d)}
           >
-            {tripDay(d + 'T12:00:00')} · {hebDate(d)}
+            {tripDay(d + 'T12:00:00')}
           </button>
         ))}
       </nav>

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { supabase, configured, BUCKET } from './supabase'
 import { qAll, qDel, qPut } from './idb'
 import type { Capture } from './types'
-import { tripDay } from './trip'
+import { tripDayNum } from './trip'
 
 export interface NewCapture {
   author: Capture['author']
@@ -51,7 +51,7 @@ async function pushOne(item: any): Promise<void> {
     lng: item.lng,
     place_name: item.place_name,
     tags: item.tags,
-    trip_day: tripDay(item.taken_at),
+    trip_day: tripDayNum(item.taken_at),
     image_path,
     audio_path
   }
