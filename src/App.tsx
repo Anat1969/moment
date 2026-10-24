@@ -102,6 +102,7 @@ export default function App() {
         <div className="meta">
           {me} · {legOf(day + 'T12:00:00')}{pending > 0 ? ` · ${pending} ממתינים` : ''}
         </div>
+        <ai-menu />
       </header>
 
       <nav className="days">
